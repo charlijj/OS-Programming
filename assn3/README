@@ -1,0 +1,52 @@
+# Assignment 3 - Multithreading
+## CSCI 360
+
+## By: Jasper Charlinski
+## Date: November 3rd, 2023
+
+## Table of Contents
+
+- About
+  - Implementation
+  - Prerequisites
+- Usage
+
+## About
+
+This program checks a 4-by-4 chess board with 4 queens (or n-by-n board with n queens) and validates wether two or more queens are in conflict with each other. This is done by checking each row, col, and diagonal in its own thread, if the thread finds a conflict it will return 0 and the program with terminate.
+
+### Implementation
+
+The board was implemented as a char double pointer, or a 2D char array, the memory for each row and col is dynamically allocated, so in theory there is no limit to the size of the chess board that can be created. The size (BOARD_SIZE) and width (BOARD_WIDTH) of the board and number of queens (NUM_QUEENS) are defined as global macros in assign.h, and can be changed if the user wants to experiment with larger values. 
+
+Validating the board is done by check_row, check_col, and check_diagonal thread startup routines. check_row and check_col are passed the row / col to be checked and a pointer to the board, they iterate through the row / col and if two queens are found they exit and return 0, if row / col is valid they return 1. check_diagonal is passed a row to check and a pointer to the board, it iterates through the row and if a queen is found it checks if the row bellow -1 col or +1 col exists and also a queen, if so it exits and return 0, otherwise if returns 1 if diagonal is valid. 
+
+The threads are created as a pthread array of size BOARD_WIDTH and are iteratively created to call check_row, check_col, and check_diagonal in functions search_row, search_col, and search_diagonal respectively.
+
+Compilation, running, and testing are automated in a bash script called run.sh
+
+### Prerequisites
+
+- G++ compiler
+- make installed
+- bash interpreter
+
+## Usage
+
+To Compile:
+  
+  run makefile: 
+
+    make
+
+To Run:
+
+  ./run.sh (or ./assign3)
+
+  - enter row and col for each queen
+
+To Test:
+
+  runs ./assign3 with input from test.txt which can be changed to test different queen configurations 
+
+  ./run.sh test

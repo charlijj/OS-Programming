@@ -1,0 +1,59 @@
+# Assignment 2 - Non-Preemptive Task Scheduling Algorithms
+## CSCI 360
+
+## By: Jasper Charlinski
+## Date: October 7th, 2023
+
+
+## Table of Contents
+
+- About
+  - Prerequisites
+  - Implementation
+- Usage
+
+## About
+
+This program is an implementation of non-preemptive task scheduling algorithms in C++. It provides a set of algorithms for scheduling tasks, including First Come First Serve, Round Robin, Priority, and Shortest Job First. These algorithms are commonly used in operating systems and task management to efficiently allocate resources and prioritize tasks.
+
+### Implementation
+
+I used a doubly linked list as the data structure for the schedule. It uses a in-order insert based on arrival time with a complexity of O(N), rather than opting to sort the list after inserts are done, saving on time complexity.    
+
+In the future or if given more time I would consider implementing the schedule as a balanced binary tree as the insert operation could be cut to a O(logN) complexity and all of operations would still be similar to implement.
+
+### Prerequisites
+
+- G++ compiler
+- make installed
+
+## Usage
+
+To Compile:
+  
+  run makefile: 
+
+    make
+
+To Run:
+
+  ./task_scheduling
+
+  - enter number of tasks you want to schedule
+
+  - enter arrival time, CPU burst, and priority for each task
+
+  - enter:
+
+    F / f to run First Come First Serve scheduling
+    R / r to run Round Robbin scheduling
+    P / p to run Priority scheduling
+    S / s to run Shortest Job First scheduling
+
+    q / Q to quit program
+
+To Test:
+
+   this automatically inserts 12 tasks and runs all of the algorithms (round robin with time quantum of 3 and 4) then quits the program. 
+   
+  ./task_scheduling < test.txt
